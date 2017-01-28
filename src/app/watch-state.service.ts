@@ -85,7 +85,7 @@ export class WatchStateService {
 
   start(time: number) {
     if (this.state.getValue() === States.ready) {
-      console.log('elapsed time', time)
+      console.log('elapsed time', time);
       this.startTime = Date.now() - time;
       this.state.next(States.running);
     }
