@@ -1,1 +1,36 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.min.css";
+@import "~font-awesome/css/font-awesome.min.css";
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.flex-height {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.flex-width {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: stretch;
+}
+
+.flex-remaining {
+    flex-grow: 1;
+}
+
+.buffer-top {
+    margin-top: 0.5rem;
+}
+
+.buffer {
+    margin: 0.5rem;
+}

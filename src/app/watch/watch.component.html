@@ -1,0 +1,18 @@
+<div class="flex-height">
+  <div class="flex-remaining">
+    <div class="flex-width buffer-top">
+      <app-timer timerTitle="Runner A"></app-timer>
+      <app-timer timerTitle="Runner B"></app-timer>
+    </div>
+  </div>
+  <div class="buffer">
+    <button *ngIf="currentState !== WAITING" [disabled]="currentState !== READY" class="btn btn-primary btn-lg btn-block" (click)="onStart()">
+      <i class="fa fa-play"></i>
+       Start
+    </button>
+    <button *ngIf="currentState === WAITING" class="btn btn-success btn-lg btn-block" (click)="onReset()">
+      <i class="fa fa-refresh"></i>
+      Reset
+    </button>
+  </div>
+</div>

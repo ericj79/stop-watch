@@ -1,0 +1,24 @@
+<div class="card">
+  <h3 class="card-header">{{timerTitle}}</h3>
+  <div class="card-content">
+    <div *ngIf="currentState === READY">
+      <h1 class="text-center">--:--.--</h1>
+    </div>
+    <div *ngIf="currentState !== READY">
+      <div *ngIf="finalData">
+        <h1 class="text-center">{{timeToString(finalData.time)}}</h1>
+        <div>Name: {{finalData.name}}</div>
+        <div>Grade: {{finalData.grade}}</div>
+      </div>
+      <div *ngIf="!finalData" class="buffer">
+        <h1 style="padding-left: 1rem">{{currentTime}}</h1>
+        <button class="btn btn-info btn-lg btn-block" (click)="onStop()">
+          <i class="fa fa-stop" aria-hidden="true"></i> Stop
+        </button>
+        <button class="buffer-top btn btn-warning btn-sm btn-block" (click)="onCancel()">
+          <i class="fa fa-ban" aria-hidden="true"></i> Cancel
+        </button>        
+      </div>
+    </div>
+  </div>
+</div>
