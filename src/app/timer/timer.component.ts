@@ -27,6 +27,8 @@ export class TimerComponent implements OnInit, OnDestroy {
   private currentState: States;
   public currentTime: string = '00:00.00';
   public finalData: TimeData;
+  public name: string;
+  public grade: string;
 
   constructor(private watchState: WatchStateService) { }
 
@@ -45,6 +47,7 @@ export class TimerComponent implements OnInit, OnDestroy {
     this.dataSubscription = this.watchState.results[this.timerTitle].asObservable()
       .subscribe((result: TimeData) => {
         this.finalData = result;
+        console.log('new final data', this.finalData);
       });
   }
 
@@ -55,6 +58,12 @@ export class TimerComponent implements OnInit, OnDestroy {
   onStop() {
       const delta: number = Date.now() - this.watchState.startTime;
       this.watchState.triggerUpdate(this.timerTitle, delta);
+  }
+
+  onSubmit() {
+      this.watchState.triggerUpdate(this.timerTitle, this.finalData.time, this.name, this.grade);
+      this.name = undefined;
+      this.grade = undefined;
   }
 
   onCancel() {

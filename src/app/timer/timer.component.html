@@ -7,8 +7,25 @@
     <div *ngIf="currentState !== READY">
       <div *ngIf="finalData">
         <h1 class="text-center">{{timeToString(finalData.time)}}</h1>
-        <div>Name: {{finalData.name}}</div>
-        <div>Grade: {{finalData.grade}}</div>
+        <div *ngIf="finalData.name">
+          <div>Name: {{finalData.name}}</div>
+          <div>Grade: {{finalData.grade}}</div>
+        </div>
+        <div *ngIf="finalData.time && !finalData.name">
+          <form class="form-group buffer" #studentForm="ngForm">
+          <div><label for="runnerName">Name:</label> <input name="studentName" class="form-control" id="runnerName" required [(ngModel)]="name" /></div>
+          <div>
+            <label for="runnerGrade">Grade:</label>
+            <select class="form-control" name="studentGrade" id="runnerGrade" required [(ngModel)]="grade">
+              <option ></option>
+              <option *ngFor="let gradeStr of watchState.grades" [value]="gradeStr">{{gradeStr}}</option>
+            </select>
+          </div>
+          <div class="buffer-top">
+            <button (click)="onSubmit()" [disabled]="!studentForm.form.valid" class="btn btn-info btn-block"><i class="fa fa-save" aria-hidden="true"></i> Save</button>
+          </div>
+          </form>
+        </div>
       </div>
       <div *ngIf="!finalData" class="buffer">
         <h1 style="padding-left: 1rem">{{currentTime}}</h1>

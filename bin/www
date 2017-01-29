@@ -28,23 +28,21 @@ let startTime = 0;
 // Listen for socket io messages
 io.on('connection', socket => {
   count++;
-  console.log('user connected', count);
   socket.on('disconnect', () => {
     count--;
-    console.log('user disconnected', count);
   });
   socket.on('update', message => {
     socket.broadcast.emit('update', message);
     if (message.state === 2) { // start the running state
       message.time = Date.now();
-    }
+    } else if ((message.state === 3) && (message.name))
+
     state = message;
   });
   if (state) {
     if (state.state === 2) { // running state
       state.time = Date.now() - state.time; // determine amount of time since actual start
     }
-    console.log('state', state);
     socket.emit('update', state);
   }
 });

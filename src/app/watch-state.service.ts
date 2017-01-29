@@ -9,6 +9,16 @@ import { States } from './states.enum';
 @Injectable()
 export class WatchStateService {
 
+  public readonly grades: Array<string> = [
+    '2nd',
+    '3rd',
+    '4th',
+    '5th',
+    '6th',
+    'Younger',
+    'Older'
+  ];
+
   public state: BehaviorSubject<States> = new BehaviorSubject<States>(States.ready);
   public startTime: number;
   public results: {[key: string]: BehaviorSubject<TimeData>};
@@ -42,6 +52,7 @@ export class WatchStateService {
 
   triggerUpdate(title: string, time: number, name?: string, grade?: string) {
     const data: TimeData = new TimeData(time, name, grade);
+    console.log('time date', data);
     const mssg = {
       state: States.partial,
       target: title,
